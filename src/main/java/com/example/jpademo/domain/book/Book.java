@@ -5,13 +5,11 @@ import com.example.jpademo.domain.book.valueobjects.Money;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.UUID;
-
 @Data
 @Entity
 public class Book {
     @Id
-    private ISBN isbn;
+    private ISBN isbn = new ISBN();
 
     private String title;
 
