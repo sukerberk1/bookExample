@@ -1,6 +1,6 @@
-package com.example.jpademo.application.adapters;
+package com.example.jpademo.application.services.book.implementation;
 
-import com.example.jpademo.application.ports.BookService;
+import com.example.jpademo.application.services.book.BookService;
 import com.example.jpademo.domain.book.Book;
 import com.example.jpademo.domain.book.valueobjects.ISBN;
 import com.example.jpademo.persistence.BookRepository;
@@ -20,21 +20,11 @@ public class DefaultBookService implements BookService {
         this.bookRepository = bookRepository;
     }
 
+    /**
+     * Creates blank book
+     */
     @Override
-    public Optional<Book> getBookByISBN(String isbnText) {
-        var book =  bookRepository.findById(
-                new ISBN(isbnText)
-        );
-        return book;
-    }
+    public void createWithTitle() {
 
-    @Override
-    public Set<Book> getAllBooks() {
-        return new HashSet<>(bookRepository.findAll());
-    }
-
-    @Override
-    public Book createBook(Book book) {
-        return bookRepository.save(book);
     }
 }
