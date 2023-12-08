@@ -8,9 +8,13 @@ import com.example.jpademo.domain.customer.Customer;
 import com.example.jpademo.domain.customer.identities.CustomerId;
 import com.example.jpademo.persistence.BookRepository;
 import com.example.jpademo.persistence.CustomerRepository;
+import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
+@Service
 public class DefaultCustomerService implements CustomerService {
 
     CustomerRepository customerRepository;
@@ -48,5 +52,10 @@ public class DefaultCustomerService implements CustomerService {
         customerRepository.save(lenderEntity);
 
         return true;
+    }
+
+    @Override
+    public Set<Customer> retrieveAll() {
+        return new HashSet<>(customerRepository.findAll());
     }
 }

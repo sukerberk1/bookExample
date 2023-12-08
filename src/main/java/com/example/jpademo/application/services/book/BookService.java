@@ -13,4 +13,5 @@ public interface BookService {
      * @see CreateWithTitleCommand
      */
     void createWithTitle(CreateWithTitleCommand command);
+    Set<Book> retrieveAllBooks();
 }

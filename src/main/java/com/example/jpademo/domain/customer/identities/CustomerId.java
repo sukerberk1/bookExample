@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.UUID;
 
 @Embeddable
-public record CustomerId(@Id UUID id) implements Serializable {
+public record CustomerId(UUID id) implements Serializable {
     public CustomerId() {
         this(UUID.randomUUID());
     }
