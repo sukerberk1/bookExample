@@ -12,4 +12,6 @@ public interface CustomerService {
     boolean lendBookOfISBN(LendBookCommand command);
 
     Set<Customer> retrieveAll();
+
+    Customer createRandomCustomerWithName(String name);
 }

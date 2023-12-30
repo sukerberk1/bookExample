@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Optional;
+import java.util.Random;
 import java.util.Set;
 
 @Service
@@ -43,12 +44,7 @@ public class DefaultCustomerService implements CustomerService {
             return false;
         var lenderEntity = lender.get();
         var bookEntity = bookToBorrow.get();
-
-        var borrowedBooks = lenderEntity.getBorrowedBooks();
-        borrowedBooks.add(bookEntity);
-
-        lenderEntity.setBorrowedBooks(borrowedBooks);
-
+        lenderEntity.addBorrowedBook(bookEntity);
         customerRepository.save(lenderEntity);
 
         return true;
@@ -57,5 +53,22 @@ public class DefaultCustomerService implements CustomerService {
     @Override
     public Set<Customer> retrieveAll() {
         return new HashSet<>(customerRepository.findAll());
+    }
+
+    @Override
+    public Customer createRandomCustomerWithName(String name) {
+        Customer customer = new Customer();
+        customer.setId(new CustomerId());
+        customer.setName(name);
+        String[] randomSurnames = new String[]{
+                "Sukerberg", "Makurembergier", "Rurkenberg",
+                "Gutenberg", "Niggerbergson", "Burger"
+        };
+        Random randomChoice = new Random();
+        customer.setSurname(randomSurnames[randomChoice.nextInt(randomSurnames.length)]);
+
+        customerRepository.save(customer);
+
+        return customer;
     }
 }
