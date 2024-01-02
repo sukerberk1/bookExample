@@ -9,11 +9,13 @@ import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import org.springframework.format.Formatter;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Locale;
 
+@Component
 public class ReviewIdSerializationConfig implements SerdeProvider<ReviewId> {
     @Override
     public JsonDeserializer<ReviewId> getJsonDeserializer() {
